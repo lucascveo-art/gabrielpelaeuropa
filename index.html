@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Renda Extra na Itália - Gabriel Domingues</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Define a fonte Inter como padrão */
+        html {
+            scroll-behavior: smooth;
+            /* Adiciona espaço no topo ao rolar para uma âncora, evitando que o header fixo cubra o título */
+            scroll-padding-top: 80px; 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- ESTILOS PARA ANIMAÇÕES --- */
+
+        /* Estilos para o Efeito Ripple (Onda no clique) */
+        .ripple-btn {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple-effect 0.6s linear;
+            pointer-events: none;
+            z-index: -1; 
+        }
+
+        @keyframes ripple-effect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Estilos para Animação de Fade-in (Surgimento suave) */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- EFEITO PULSATIVO (Botões CTA) --- */
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(1);
+                /* Sombra sutil verde */
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+            }
+            70% {
+                transform: scale(1.03); 
+                box-shadow: 0 0 10px 20px rgba(52, 211, 153, 0); 
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+            }
+        }
+        
+        .pulse-btn {
+            animation: pulse-animation 2.5s infinite;
+            transform-origin: center;
+            z-index: 10;
+        }
+        /* --- FIM DOS ESTILOS DE ANIMAÇÕES --- */
+
+        /* --- ESTILOS DE BACKGROUNDS DEGRADÊ BRASIL/ITÁLIA (CORRIGIDOS) --- */
+        
+        /* Gradiente Brasil: Verde pastel para Amarelo pastel */
+        .bg-brazil-gradient {
+            background: linear-gradient(135deg, #e6fffa, #fff9c4);
+        }
+        
+        /* Gradiente Itália: Verde pastel, Branco, Vermelho/Rosé pastel */
+        .bg-italy-gradient {
+            background: linear-gradient(135deg, #e8f5e9, #ffffff 50%, #ffebf0); 
+        }
+        
+        /* Gradiente Escuro Itália: Tons de cinza chumbo */
+        .bg-dark-italy-gradient {
+            background: linear-gradient(135deg, #263238, #37474f);
+        }
+        
+        /* Gradiente Escuro Brasil: Tons de verde escuro */
+        .bg-dark-brazil-gradient {
+            background: linear-gradient(135deg, #004d40, #00695c);
+        }
+        /* --- FIM DOS ESTILOS DE BACKGROUNDS --- */
+
+        /* --- NOVOS ESTILOS: SEÇÃO "MITOS VS VERDADES" (FLIP CARD) --- */
+        
+        /* Contêiner do cartão 3D */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 300px; /* Altura fixa para o efeito funcionar bem */
+            perspective: 1000px; /* Efeito de perspectiva 3D */
+            cursor: pointer;
+        }
+
+        /* Contêiner interno que vira */
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            border-radius: 0.75rem; /* 12px */
+        }
+
+        /* Efeito de virar (adicionado via JS no mobile) */
+        .flip-card-inner.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* No desktop, vira com hover */
+        @media (min-width: 768px) {
+            .flip-card:hover .flip-card-inner {
+                transform: rotateY(180deg);
+            }
+        }
+
+        /* Lado da Frente e Lado de Trás */
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 0.75rem; /* 12px */
+        }
+
+        /* Lado da Frente (Mito) */
+        .flip-card-front {
+            background-color: #ffffff;
+            color: #1f2937; /* gray-800 */
+        }
+
+        /* Lado de Trás (Verdade) */
+        .flip-card-back {
+            background-color: #10b981; /* green-500 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+        /* --- FIM DOS NOVOS ESTILOS --- */
+
+        /* --- NOVO ESTILO: IMAGEM DE FUNDO DA MAIN --- */
+        .main-bg-image {
+            background-image: url('https://i.imgur.com/jmdqBsV.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; /* Para o overlay funcionar */
+        }
+
+        .main-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Overlay escuro */
+            z-index: 0; /* Fica abaixo do conteúdo */
+        }
+
+        /* --- NOVO ESTILO: IMAGEM DE FUNDO DA CTA (AULA) --- */
+        .cta-bg-image {
+            background-image: url('https://i.imgur.com/2upUBW0.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; /* Para o overlay funcionar */
+        }
+        /* --- FIM DOS NOVOS ESTILOS --- */
+
+    </style>
+</head>
+<body class="text-gray-800">
+
+    
+    
+
+<header class="shadow-sm bg-white sticky top-0 z-50">
+        
+        
+
+<div class="flex">
+            <div class="h-2 w-1/2 bg-gradient-to-r from-green-500 via-yellow-400 to-blue-600" title="Cores do Brasil"></div>
+            <div class="h-2 w-1/2 bg-gradient-to-r from-green-500 via-white to-red-600" title="Cores da Itália"></div>
+        </div>
+
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <div class="text-2xl font-bold text-gray-900">
+                Renda Extra na Itália
+            </div>
+
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#cta" class="text-gray-600 hover:text-gray-900 font-medium transition duration-300">O Método</a>
+                <a href="#quem-sou" class="text-gray-600 hover:text-gray-900 font-medium transition duration-300">Quem Sou</a>
+                
+                <a href="#preco" class="bg-green-600 text-white font-semibold px-5 py-2 rounded-lg shadow-md hover:bg-green-700 transition duration-300 ripple-btn">
+                    Começar Agora
+                </a>
+            </div>
+            
+            
+            <button id="hamburger-btn" class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none" aria-label="Abrir menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full z-30">
+            <a href="#cta" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium nav-link-mobile">O Método</a>
+            <a href="#quem-sou" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium nav-link-mobile">Quem Sou</a>
+        </div>
+    </header>
+
+    
+    <main class="main-bg-image relative pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="main-overlay"></div> 
+        <div class="container mx-auto px-6 relative z-10"> 
+            <div class="flex flex-col items-center gap-12 text-center">
+                
+                
+                <div class="lg:w-full fade-in-element">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        Descubra como Gerar
+                        <span class="text-yellow-300">Renda Extra em Euros</span>
+                        Morando na Itália
+                    </h1>
+                    <p class="mt-6 text-lg md:text-xl text-gray-200">
+                        Mesmo que você esteja começando do zero, vou te mostrar o caminho exato que eu segui para faturar na Europa. Assista ao vídeo abaixo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <section id="cta" class="cta-bg-image relative py-20 md:py-28">
+        <div class="main-overlay"></div> 
+        <div class="container mx-auto px-6 max-w-4xl text-center relative z-10"> 
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 fade-in-element">
+                Assista à Aula Exclusiva
+            </h2>
+            
+            
+            <div class="aspect-video bg-black rounded-xl shadow-2xl relative flex items-center justify-center overflow-hidden mb-10 fade-in-element">
+                
+                <svg class="w-20 h-20 text-white opacity-50" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                </svg>
+                <span class="absolute text-white opacity-70 bottom-4 text-sm">Carregando vídeo...</span>
+                
+            </div>
+
+            
+            <a href="#" 
+               target="_blank" 
+               class="inline-block bg-green-500 text-gray-900 font-extrabold text-xl md:text-2xl px-10 py-5 rounded-lg shadow-lg uppercase
+                      transform transition duration-300 ease-in-out
+                      hover:bg-green-400 hover:shadow-2xl hover:scale-105 ripple-btn fade-in-element pulse-btn">
+                QUERO ACESSAR O MÉTODO COMPLETO
+            </a>
+            <p class="text-gray-300 mt-4 text-sm">Vagas limitadas. Clique no botão acima.</p>
+        </div>
+    </section>
+
+    
+    <section id="quem-sou" class="bg-italy-gradient py-20 md:py-28">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Quem vai te guiar?</h2>
+                
+                
+                <p class="mt-4 text-lg text-gray-700">
+                    Prazer, sou o Gabriel Domingues. Saí do Brasil e vim para a Itália em busca de um sonho. Depois de muito ralar, descobri um método para criar uma nova fonte de renda em Euros, e agora quero compartilhar tudo com você.
+                </p>
+
+                
+                <div class="mt-8 flex justify-center">
+                    <a href="https://www.instagram.com/gabrielpelaeuropa" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition duration-300 ripple-btn">
+                        
+                        
+
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.5 9.5v5A5.5 5.5 0 009 20h6a5.5 5.5 0 005.5-5.5v-5A5.5 5.5 0 0015 4H9A5.5 5.5 0 003.5 9.5z"></path>
+                        </svg>
+                        Siga-me no @gabrielpelaeuropa
+                    </a>
+                </div>
+            </div>
+
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                
+                
+                <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden fade-in-element">
+                    <img src="https://placehold.co/600x600/e0e0e0/333?text=Foto+com+Camisa+de+Time+1" 
+                         alt="Foto com camisa de time" 
+                         class="w-full h-full object-cover aspect-square">
+                </div>
+
+                
+                
+
+<div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden fade-in-element" style="transition-delay: 150ms;">
+                    <img src="https://i.imgur.com/0YYxffp.png" 
+                         alt="Foto de Gabriel Domingues na Itália" 
+                         class="w-full h-full object-cover aspect-square">
+                </div>
+
+                
+                <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden fade-in-element" style="transition-delay: 300ms;">
+                    <img src="https://placehold.co/600x600/e0e0e0/333?text=Foto+com+Camisa+de+Time+2" 
+                         alt="Foto com camisa de time" 
+                         class="w-full h-full object-cover aspect-square">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="mitos-verdades" class="bg-brazil-gradient py-20 md:py-28">
+        <div class="container mx-auto px-6">
+            
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Será que isso é para você?</h2>
+                <p class="mt-4 text-lg text-gray-700">
+                    3 Mitos que te impedem de ganhar em Euros (e a pura verdade que ninguém te conta).
+                </p>
+                <p class="mt-2 text-sm text-gray-600 md:hidden">(Toque nos cartões para revelar)</p>
+            </div>
+
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+
+                
+                <div class="flip-card fade-in-element" style="transition-delay: 100ms;">
+                    <div class="flip-card-inner flip-toggle">
+                        
+                        <div class="flip-card-front">
+                            <svg class="w-16 h-16 text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                            <h3 class="text-2xl font-bold mb-2">MITO #1</h3>
+                            <p class="text-lg font-semibold">"Preciso falar italiano fluente para ganhar dinheiro."</p>
+                        </div>
+                        
+                        <div class="flip-card-back">
+                            <h3 class="text-2xl font-bold mb-2">VERDADE</h3>
+                            <p class="text-lg">Existem métodos que você pode começar hoje, usando apenas o seu celular e falando português, focados no público brasileiro que vive na Itália ou até mesmo no Brasil.</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="flip-card fade-in-element" style="transition-delay: 250ms;">
+                    <div class="flip-card-inner flip-toggle">
+                        
+                        <div class="flip-card-front">
+                            <svg class="w-16 h-16 text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                            <h3 class="text-2xl font-bold mb-2">MITO #2</h3>
+                            <p class="text-lg font-semibold">"É muito burocrático e preciso de CNPJ italiano (Partita IVA)."</p>
+                        </div>
+                        
+                        <div class="flip-card-back">
+                            <h3 class="text-2xl font-bold mb-2">VERDADE</h3>
+                            <p class="text-lg">Você pode começar como pessoa física e declarar sua renda de forma simples. Eu mostro exatamente como fazer isso sem dor de cabeça, focado apenas em começar a lucrar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="flip-card fade-in-element" style="transition-delay: 400ms;">
+                    <div class="flip-card-inner flip-toggle">
+                        
+                        <div class="flip-card-front">
+                            <svg class="w-16 h-16 text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
+                            <h3 class="text-2xl font-bold mb-2">MITO #3</h3>
+                            <p class="text-lg font-semibold">"Não tenho tempo, já trabalho o dia todo."</p>
+                        </div>
+                        
+                        <div class="flip-card-back">
+                            <h3 class="text-2xl font-bold mb-2">VERDADE</h3>
+                            <p class="text-lg">O método é focado em usar suas horas vagas. Com 1 ou 2 horas por dia, você consegue construir sua estrutura e começar a fazer suas primeiras vendas em Euros.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <section class="bg-italy-gradient py-20"> 
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+                
+                
+                <div class="flex flex-col items-center fade-in-element">
+                    <svg class="w-12 h-12 text-blue-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 14v.01M12 14v.01M12 6v.01M12 6v.01M12 16v.01M12 16v.01M12 4v.01M12 4v.01M12 18v.01M12 18v.01M5 12h.01M5 12h.01M19 12h.01M19 12h.01M5 12h.01M5 12h.01"></path></svg>
+                    <h3 class="text-xl font-bold mb-2">Para Brasileiros</h3>
+                    <p class="text-gray-700">Linguagem direta e sem enrolação, de brasileiro para brasileiro.</p>
+                </div>
+                
+                
+                <div class="flex flex-col items-center fade-in-element" style="transition-delay: 150ms;">
+                    <svg class="w-12 h-12 text-red-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <h3 class="text-xl font-bold mb-2">Foco na Itália</h3>
+                    <p class="text-gray-700">Oportunidades e métodos testados e validados no mercado italiano.</p>
+                </div>
+
+                
+                <div class="flex flex-col items-center fade-in-element" style="transition-delay: 300ms;">
+                    <svg class="w-12 h-12 text-green-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 14v.01M12 14v.01M12 6v.01M12 6v.01M12 16v.01M12 16v.01M12 4v.01M12 4v.01M12 18v.01M12 18v.01M5 12h.01M5 12h.01M19 12h.01M19 12h.01M5 12h.01M5 12h.01"></path></svg>
+                    <h3 class="text-xl font-bold mb-2">Receba em Euros</h3>
+                    <p class="text-gray-700">Aprenda a criar uma fonte de renda na moeda mais forte.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="preco" class="bg-dark-brazil-gradient text-white py-20 md:py-28">
+        <div class="container mx-auto px-6 max-w-3xl text-center fade-in-element">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                Comece a Mudar sua Realidade na Itália Hoje
+            </h2>
+            <p class="text-lg text-gray-200 mb-8">
+                Acesso imediato a todo o método por um pagamento único de:
+            </p>
+            
+            
+            <div class="my-8">
+                <span class="text-6xl md:text-7xl font-extrabold text-yellow-300">€ 97,00</span>
+                <span class="text-gray-300">pagamento único</span>
+            </div>
+
+            
+            <a href="#" 
+               target="_blank" 
+               class="inline-block bg-white text-gray-900 font-extrabold text-xl md:text-2xl px-10 py-5 rounded-lg shadow-lg uppercase
+                      transform transition duration-300 ease-in-out
+                      hover:bg-gray-100 hover:shadow-2xl hover:scale-105 ripple-btn pulse-btn">
+                GARANTIR MINHA VAGA AGORA
+            </a>
+        </div>
+    </section>
+
+    
+    <footer class="bg-gray-900 text-gray-500 py-10">
+        <div class="container mx-auto px-6 text-center text-sm">
+            
+            <p>&copy; 2025 Gabriel Domingues. Todos os direitos reservados.</p>
+            <p class="mt-2">Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. Os resultados podem variar e dependem do seu esforço individual.</p>
+        </div>
+    </footer>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- LÓGICA DO EFEITO RIPPLE ---
+            function createRipple(event) {
+                const button = event.currentTarget;
+
+                const ripple = document.createElement("span");
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = event.clientX - rect.left - size / 2;
+                const y = event.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.classList.add("ripple");
+
+                const existingRipple = button.querySelector(".ripple");
+                if (existingRipple) {
+                    existingRipple.remove();
+                }
+
+                button.appendChild(ripple);
+
+                ripple.addEventListener('animationend', () => {
+                    if (ripple.parentElement) {
+                        ripple.remove();
+                    }
+                });
+            }
+
+            const rippleButtons = document.querySelectorAll('.ripple-btn');
+            rippleButtons.forEach(button => {
+                button.addEventListener('click', createRipple);
+            });
+
+            // --- LÓGICA DO FADE-IN ON SCROLL ---
+            const fadeInElements = document.querySelectorAll('.fade-in-element');
+
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target); 
+                        }
+                    });
+                }, {
+                    threshold: 0.1 // Anima quando 10% do elemento estiver visível
+                });
+
+                fadeInElements.forEach(el => {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback para browsers antigos
+                fadeInElements.forEach(el => {
+                    el.classList.add('is-visible');
+                });
+            }
+
+            // --- LÓGICA DO MENU HAMBURGER ---
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.nav-link-mobile');
+
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- NOVA LÓGICA: FLIP CARD (PARA MOBILE/TOQUE) ---
+            const flipToggles = document.querySelectorAll('.flip-toggle');
+            flipToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    // Adiciona/remove a classe que ativa a animação CSS
+                    toggle.classList.toggle('is-flipped');
+                });
+            });
+            // --- FIM DA NOVA LÓGICA ---
+        });
+    </script>
+    
+</body>
+</html>
