@@ -22,7 +22,63 @@
 
         body {
             font-family: 'Inter', sans-serif;
+            /* Oculta o cursor padrão para o efeito customizado */
+            cursor: none;
         }
+
+        /* --- NOVO: ESTILOS DO CURSOR CUSTOMIZADO --- */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #f1f5f9; /* slate-100 */
+            mix-blend-mode: difference; /* Efeito de inversão de cor */
+            border-radius: 50%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #f1f5f9; /* slate-100 */
+            mix-blend-mode: difference; /* Efeito de inversão de cor */
+            border-radius: 50%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.2s ease-out;
+        }
+
+        /* Classe de "hover" para o cursor */
+        .cursor-hover {
+            transform: scale(1.5);
+            opacity: 0.5;
+        }
+        
+        .dot-hover {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Oculta o cursor customizado em dispositivos touch */
+        @media (pointer: coarse) {
+            body {
+                cursor: auto;
+            }
+            .cursor-dot, .cursor-outline {
+                display: none;
+            }
+        }
+        /* --- FIM DOS ESTILOS DO CURSOR --- */
+
 
         /* --- ESTILOS PARA ANIMAÇÕES --- */
 
@@ -117,7 +173,7 @@
             width: 100%;
             height: 300px; /* Altura fixa para o efeito funcionar bem */
             perspective: 1000px; /* Efeito de perspectiva 3D */
-            cursor: pointer;
+            cursor: none; /* Usa o cursor customizado */
         }
 
         /* Contêiner interno que vira */
@@ -171,7 +227,7 @@
             color: white;
             transform: rotateY(180deg);
         }
-        /* --- FIM DOS NOVOS ESTILOS --- */
+        /* --- FIM DOS ESTILOS DO FLIP CARD --- */
 
         /* --- NOVO ESTILO: IMAGEM DE FUNDO DA MAIN --- */
         .main-bg-image {
@@ -200,16 +256,80 @@
             background-repeat: no-repeat;
             position: relative; /* Para o overlay funcionar */
         }
-        /* --- FIM DOS NOVOS ESTILOS --- */
+        /* --- FIM DOS ESTILOS DE BACKGROUND --- */
+
+        /* --- NOVO: ANIMAÇÃO BORDA VÍDEO --- */
+        @keyframes italian-pulse {
+            0%, 100% {
+                /* Verde */
+                box-shadow: 0 0 20px 8px rgba(0, 146, 70, 0.8), 0 0 5px 2px rgba(0, 146, 70, 0.8) inset;
+            }
+            33% {
+                /* Branco */
+                box-shadow: 0 0 20px 8px rgba(241, 242, 241, 0.9), 0 0 5px 2px rgba(241, 242, 241, 0.9) inset;
+            }
+            66% {
+                /* Vermelho */
+                box-shadow: 0 0 20px 8px rgba(206, 43, 55, 0.8), 0 0 5px 2px rgba(206, 43, 55, 0.8) inset;
+            }
+        }
+
+        .video-pulse-border {
+            /* A animação dura 4 segundos e se repete infinitamente */
+            animation: italian-pulse 4s infinite linear;
+        }
+        /* --- FIM DA NOVA ANIMAÇÃO --- */
+
+        /* --- NOVO: ESTILOS DO FAQ (ACORDEÃO) --- */
+        .faq-item {
+            border-bottom: 1px solid #cbd5e1; /* gray-300 */
+        }
+        .faq-trigger {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem 0; /* py-6 */
+            text-align: left;
+            font-weight: 600; /* font-semibold */
+            font-size: 1.125rem; /* text-lg */
+            color: #1f2937; /* gray-800 */
+        }
+        .faq-trigger:hover {
+            color: #10b981; /* green-500 */
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            color: #4b5563; /* gray-600 */
+        }
+        /* Classe JS para abrir */
+        .faq-content.is-open {
+            max-height: 500px; /* Altura suficiente para a resposta */
+            padding-bottom: 1.5rem; /* pb-6 */
+            transition: max-height 0.4s ease-in;
+        }
+        .faq-trigger.is-open .faq-icon {
+            transform: rotate(45deg);
+        }
+        /* --- FIM DOS ESTILOS DO FAQ --- */
 
     </style>
 </head>
 <body class="text-gray-800">
 
+    <!-- NOVO: Elementos do Cursor Customizado -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     
     
 
-<header class="shadow-sm bg-white sticky top-0 z-50">
+<header class="shadow-sm bg-white sticky top-0 z-40"> 
         
         
 
@@ -279,13 +399,16 @@
             </h2>
             
             
-            <div class="aspect-video bg-black rounded-xl shadow-2xl relative flex items-center justify-center overflow-hidden mb-10 fade-in-element">
-                
-                <svg class="w-20 h-20 text-white opacity-50" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                </svg>
-                <span class="absolute text-white opacity-70 bottom-4 text-sm">Carregando vídeo...</span>
-                
+            
+
+<div class="aspect-video rounded-xl shadow-2xl relative overflow-hidden mb-10 fade-in-element video-pulse-border">
+                <iframe 
+                    src="https://player.vimeo.com/video/1133614631?color=34d399&title=0&byline=0&portrait=0" 
+                    class="absolute top-0 left-0 w-full h-full" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
             </div>
 
             
@@ -458,6 +581,67 @@
         </div>
     </section>
 
+    <!-- NOVA SEÇÃO: FAQ (ACORDEÃO) -->
+    <section id="faq" class="bg-brazil-gradient py-20 md:py-28">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Ainda tem Dúvidas?</h2>
+                <p class="mt-4 text-lg text-gray-700">
+                    Respostas diretas para as perguntas mais comuns sobre o método.
+                </p>
+            </div>
+
+            <div class="space-y-4 fade-in-element" style="transition-delay: 150ms;">
+                
+                <!-- Item 1 -->
+                <div class="faq-item bg-white/70 rounded-lg p-4 shadow-sm">
+                    <button class="faq-trigger">
+                        <span>O acesso é vitalício?</span>
+                        <svg class="w-6 h-6 faq-icon text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    </button>
+                    <div class="faq-content">
+                        Sim! O pagamento é único e você terá acesso para sempre, incluindo todas as futuras atualizações do método, sem custo adicional.
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="faq-item bg-white/70 rounded-lg p-4 shadow-sm">
+                    <button class="faq-trigger">
+                        <span>Serve para quem ainda está no Brasil?</span>
+                        <svg class="w-6 h-6 faq-icon text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    </button>
+                    <div class="faq-content">
+                        Com certeza! Muitos dos métodos podem ser aplicados diretamente do Brasil, permitindo que você comece a ganhar em Euros antes mesmo de se mudar para a Itália. É a preparação perfeita.
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="faq-item bg-white/70 rounded-lg p-4 shadow-sm">
+                    <button class="faq-trigger">
+                        <span>Não entendo de tecnologia. Vou conseguir aplicar?</span>
+                        <svg class="w-6 h-6 faq-icon text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    </button>
+                    <div class="faq-content">
+                        O método foi desenhado para iniciantes. Você não precisa saber programar ou ser um expert em design. Vou te mostrar o "clique a clique" usando ferramentas simples e muitas vezes gratuitas, que qualquer pessoa consegue usar apenas com um celular ou computador.
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="faq-item bg-white/70 rounded-lg p-4 shadow-sm">
+                    <button class="faq-trigger">
+                        <span>Tenho garantia?</span>
+                        <svg class="w-6 h-6 faq-icon text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    </button>
+                    <div class="faq-content">
+                        Sim! Você tem 7 dias de garantia incondicional. Se por qualquer motivo você achar que o método não é para você, basta enviar um e-mail e eu devolvo 100% do seu investimento, sem perguntas. O risco é todo meu.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- FIM DA NOVA SEÇÃO -->
+
     
     <section id="preco" class="bg-dark-brazil-gradient text-white py-20 md:py-28">
         <div class="container mx-auto px-6 max-w-3xl text-center fade-in-element">
@@ -580,9 +764,74 @@
                     toggle.classList.toggle('is-flipped');
                 });
             });
+
+            // --- NOVA LÓGICA: CURSOR CUSTOMIZADO ---
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            // Atualiza a posição do cursor
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                cursorOutline.style.left = `${posX}px`;
+                cursorOutline.style.top = `${posY}px`;
+
+                // Anima o outline
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 300, fill: 'forwards' });
+            });
+
+            // Adiciona efeito de hover
+            const interactiveElements = document.querySelectorAll('a, button, .flip-card, .faq-trigger');
+            
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.classList.add('cursor-hover');
+                    cursorDot.classList.add('dot-hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.classList.remove('cursor-hover');
+                    cursorDot.classList.remove('dot-hover');
+                });
+            });
+
+
+            // --- NOVA LÓGICA: FAQ (ACORDEÃO) ---
+            const faqTriggers = document.querySelectorAll('.faq-trigger');
+
+            faqTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const content = trigger.nextElementSibling;
+                    const isOpen = content.classList.contains('is-open');
+
+                    // Opcional: Fechar todos os outros abertos
+                    faqTriggers.forEach(t => {
+                        if (t !== trigger) { // Não fecha o que acabou de ser clicado
+                            t.classList.remove('is-open');
+                            t.nextElementSibling.classList.remove('is-open');
+                        }
+                    });
+
+                    // Abrir/Fechar o item clicado
+                    if (!isOpen) {
+                        trigger.classList.add('is-open');
+                        content.classList.add('is-open');
+                    } else {
+                        trigger.classList.remove('is-open');
+                        content.classList.remove('is-open');
+                    }
+                });
+            });
             // --- FIM DA NOVA LÓGICA ---
         });
     </script>
     
 </body>
 </html>
+
