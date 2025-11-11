@@ -6,8 +6,10 @@
     
     <title>Renda Extra na Itália - Gabriel Domingues</title>
     
+    <!-- Carrega o Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Carrega a fonte Inter do Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -26,7 +28,7 @@
             cursor: none;
         }
 
-        /* --- NOVO: ESTILOS DO CURSOR CUSTOMIZADO --- */
+        /* --- ESTILOS DO CURSOR CUSTOMIZADO --- */
         .cursor-dot {
             width: 8px;
             height: 8px;
@@ -142,7 +144,7 @@
         }
         /* --- FIM DOS ESTILOS DE ANIMAÇÕES --- */
 
-        /* --- ESTILOS DE BACKGROUNDS DEGRADÊ BRASIL/ITÁLIA (CORRIGIDOS) --- */
+        /* --- ESTILOS DE BACKGROUNDS DEGRADÊ BRASIL/ITÁLIA --- */
         
         /* Gradiente Brasil: Verde pastel para Amarelo pastel */
         .bg-brazil-gradient {
@@ -165,7 +167,7 @@
         }
         /* --- FIM DOS ESTILOS DE BACKGROUNDS --- */
 
-        /* --- NOVOS ESTILOS: SEÇÃO "MITOS VS VERDADES" (FLIP CARD) --- */
+        /* --- ESTILOS: SEÇÃO "MITOS VS VERDADES" (FLIP CARD) --- */
         
         /* Contêiner do cartão 3D */
         .flip-card {
@@ -229,7 +231,7 @@
         }
         /* --- FIM DOS ESTILOS DO FLIP CARD --- */
 
-        /* --- NOVO ESTILO: IMAGEM DE FUNDO DA MAIN --- */
+        /* --- ESTILO: IMAGEM DE FUNDO DA MAIN --- */
         .main-bg-image {
             background-image: url('https://i.imgur.com/jmdqBsV.png');
             background-size: cover;
@@ -248,7 +250,7 @@
             z-index: 0; /* Fica abaixo do conteúdo */
         }
 
-        /* --- NOVO ESTILO: IMAGEM DE FUNDO DA CTA (AULA) --- */
+        /* --- ESTILO: IMAGEM DE FUNDO DA CTA (AULA) --- */
         .cta-bg-image {
             background-image: url('https://i.imgur.com/2upUBW0.png');
             background-size: cover;
@@ -258,7 +260,7 @@
         }
         /* --- FIM DOS ESTILOS DE BACKGROUND --- */
 
-        /* --- NOVO: ANIMAÇÃO BORDA VÍDEO --- */
+        /* --- ANIMAÇÃO BORDA VÍDEO --- */
         @keyframes italian-pulse {
             0%, 100% {
                 /* Verde */
@@ -278,9 +280,9 @@
             /* A animação dura 4 segundos e se repete infinitamente */
             animation: italian-pulse 4s infinite linear;
         }
-        /* --- FIM DA NOVA ANIMAÇÃO --- */
+        /* --- FIM DA ANIMAÇÃO --- */
 
-        /* --- NOVO: ESTILOS DO FAQ (ACORDEÃO) --- */
+        /* --- ESTILOS DO FAQ (ACORDEÃO) --- */
         .faq-item {
             border-bottom: 1px solid #cbd5e1; /* gray-300 */
         }
@@ -322,29 +324,32 @@
 </head>
 <body class="text-gray-800">
 
-    <!-- NOVO: Elementos do Cursor Customizado -->
+    <!-- Elementos do Cursor Customizado -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
     
     
-
-<header class="shadow-sm bg-white sticky top-0 z-40"> 
+    <!-- HEADER -->
+    <header class="shadow-sm bg-white sticky top-0 z-40"> 
         
         
-
-<div class="flex">
+        <!-- Barra de progresso / Detalhe de cor -->
+        <div class="flex">
             <div class="h-2 w-1/2 bg-gradient-to-r from-green-500 via-yellow-400 to-blue-600" title="Cores do Brasil"></div>
             <div class="h-2 w-1/2 bg-gradient-to-r from-green-500 via-white to-red-600" title="Cores da Itália"></div>
         </div>
 
+        <!-- Navegação Principal -->
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             
+            <!-- Logo ou Título -->
             <div class="text-2xl font-bold text-gray-900">
                 Renda Extra na Itália
             </div>
 
             
+            <!-- Links do Desktop -->
             <div class="hidden md:flex items-center space-x-6">
                 <a href="#cta" class="text-gray-600 hover:text-gray-900 font-medium transition duration-300">O Método</a>
                 <a href="#quem-sou" class="text-gray-600 hover:text-gray-900 font-medium transition duration-300">Quem Sou</a>
@@ -355,6 +360,7 @@
             </div>
             
             
+            <!-- Botão Hamburger (Mobile) -->
             <button id="hamburger-btn" class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none" aria-label="Abrir menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -363,6 +369,7 @@
         </nav>
 
         
+        <!-- Menu Mobile (Oculto por padrão) -->
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full z-30">
             <a href="#cta" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium nav-link-mobile">O Método</a>
             <a href="#quem-sou" class="block px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium nav-link-mobile">Quem Sou</a>
@@ -370,8 +377,9 @@
     </header>
 
     
+    <!-- SEÇÃO HERO (PRINCIPAL) -->
     <main class="main-bg-image relative pt-24 pb-16 md:pt-32 md:pb-24">
-        <div class="main-overlay"></div> 
+        <div class="main-overlay"></div> <!-- Overlay escuro -->
         <div class="container mx-auto px-6 relative z-10"> 
             <div class="flex flex-col items-center gap-12 text-center">
                 
@@ -391,6 +399,7 @@
     </main>
 
     
+    <!-- SEÇÃO CTA (AULA/VÍDEO) -->
     <section id="cta" class="cta-bg-image relative py-20 md:py-28">
         <div class="main-overlay"></div> 
         <div class="container mx-auto px-6 max-w-4xl text-center relative z-10"> 
@@ -400,10 +409,10 @@
             
             
             
-
-<div class="aspect-video rounded-xl shadow-2xl relative overflow-hidden mb-10 fade-in-element video-pulse-border">
+            <!-- Container do Vídeo (Vimeo) -->
+            <div class="aspect-video rounded-xl shadow-2xl relative overflow-hidden mb-10 fade-in-element video-pulse-border">
                 <iframe 
-                    src="https://player.vimeo.com/video/1133614631?color=34d399&title=0&byline=0&portrait=0" 
+                    src="https://player.vimeo.com/video/1135724240?color=34d399&title=0&byline=0&portrait=0" 
                     class="absolute top-0 left-0 w-full h-full" 
                     frameborder="0" 
                     allow="autoplay; fullscreen; picture-in-picture" 
@@ -412,6 +421,7 @@
             </div>
 
             
+            <!-- Botão CTA Principal -->
             <a href="#" 
                target="_blank" 
                class="inline-block bg-green-500 text-gray-900 font-extrabold text-xl md:text-2xl px-10 py-5 rounded-lg shadow-lg uppercase
@@ -424,6 +434,7 @@
     </section>
 
     
+    <!-- SEÇÃO "QUEM SOU" -->
     <section id="quem-sou" class="bg-italy-gradient py-20 md:py-28">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
@@ -435,6 +446,7 @@
                 </p>
 
                 
+                <!-- Link do Instagram -->
                 <div class="mt-8 flex justify-center">
                     <a href="https://www.instagram.com/gabrielpelaeuropa" 
                        target="_blank" 
@@ -442,8 +454,8 @@
                        class="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition duration-300 ripple-btn">
                         
                         
-
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Ícone do Instagram -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.5 9.5v5A5.5 5.5 0 009 20h6a5.5 5.5 0 005.5-5.5v-5A5.5 5.5 0 0015 4H9A5.5 5.5 0 003.5 9.5z"></path>
                         </svg>
@@ -453,35 +465,40 @@
             </div>
 
             
+            <!-- Grid de Fotos -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 
                 
                 <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden fade-in-element">
                     <img src="https://placehold.co/600x600/e0e0e0/333?text=Foto+com+Camisa+de+Time+1" 
                          alt="Foto com camisa de time" 
-                         class="w-full h-full object-cover aspect-square">
+                         class="w-full h-full object-cover aspect-square"
+                         onerror="this.src='https://placehold.co/600x600/e0e0e0/333?text=Imagem+Indisponível'; this.onerror=null;">
                 </div>
 
                 
                 
-
-<div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden fade-in-element" style="transition-delay: 150ms;">
+                <!-- Imagem Principal (Corrigida) -->
+                <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden fade-in-element" style="transition-delay: 150ms;">
                     <img src="https://i.imgur.com/0YYxffp.png" 
                          alt="Foto de Gabriel Domingues na Itália" 
-                         class="w-full h-full object-cover aspect-square">
+                         class="w-full h-full object-cover aspect-square"
+                         onerror="this.src='https://placehold.co/600x600/e0e0e0/333?text=Imagem+Indisponível'; this.onerror=null;">
                 </div>
 
                 
                 <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden fade-in-element" style="transition-delay: 300ms;">
                     <img src="https://placehold.co/600x600/e0e0e0/333?text=Foto+com+Camisa+de+Time+2" 
                          alt="Foto com camisa de time" 
-                         class="w-full h-full object-cover aspect-square">
+                         class="w-full h-full object-cover aspect-square"
+                         onerror="this.src='https://placehold.co/600x600/e0e0e0/333?text=Imagem+Indisponível'; this.onerror=null;">
                 </div>
             </div>
         </div>
     </section>
 
     
+    <!-- SEÇÃO "MITOS VS VERDADES" (FLIP CARDS) -->
     <section id="mitos-verdades" class="bg-brazil-gradient py-20 md:py-28">
         <div class="container mx-auto px-6">
             
@@ -498,15 +515,18 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
 
                 
+                <!-- Card 1 -->
                 <div class="flip-card fade-in-element" style="transition-delay: 100ms;">
                     <div class="flip-card-inner flip-toggle">
                         
+                        <!-- Frente -->
                         <div class="flip-card-front">
                             <svg class="w-16 h-16 text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
                             <h3 class="text-2xl font-bold mb-2">MITO #1</h3>
                             <p class="text-lg font-semibold">"Preciso falar italiano fluente para ganhar dinheiro."</p>
                         </div>
                         
+                        <!-- Trás -->
                         <div class="flip-card-back">
                             <h3 class="text-2xl font-bold mb-2">VERDADE</h3>
                             <p class="text-lg">Existem métodos que você pode começar hoje, usando apenas o seu celular e falando português, focados no público brasileiro que vive na Itália ou até mesmo no Brasil.</p>
@@ -515,15 +535,18 @@
                 </div>
 
                 
+                <!-- Card 2 -->
                 <div class="flip-card fade-in-element" style="transition-delay: 250ms;">
                     <div class="flip-card-inner flip-toggle">
                         
+                        <!-- Frente -->
                         <div class="flip-card-front">
                             <svg class="w-16 h-16 text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
                             <h3 class="text-2xl font-bold mb-2">MITO #2</h3>
                             <p class="text-lg font-semibold">"É muito burocrático e preciso de CNPJ italiano (Partita IVA)."</p>
                         </div>
                         
+                        <!-- Trás -->
                         <div class="flip-card-back">
                             <h3 class="text-2xl font-bold mb-2">VERDADE</h3>
                             <p class="text-lg">Você pode começar como pessoa física e declarar sua renda de forma simples. Eu mostro exatamente como fazer isso sem dor de cabeça, focado apenas em começar a lucrar.</p>
@@ -532,15 +555,18 @@
                 </div>
 
                 
+                <!-- Card 3 -->
                 <div class="flip-card fade-in-element" style="transition-delay: 400ms;">
                     <div class="flip-card-inner flip-toggle">
                         
+                        <!-- Frente -->
                         <div class="flip-card-front">
                             <svg class="w-16 h-16 text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg>
                             <h3 class="text-2xl font-bold mb-2">MITO #3</h3>
                             <p class="text-lg font-semibold">"Não tenho tempo, já trabalho o dia todo."</p>
                         </div>
                         
+                        <!-- Trás -->
                         <div class="flip-card-back">
                             <h3 class="text-2xl font-bold mb-2">VERDADE</h3>
                             <p class="text-lg">O método é focado em usar suas horas vagas. Com 1 ou 2 horas por dia, você consegue construir sua estrutura e começar a fazer suas primeiras vendas em Euros.</p>
@@ -552,6 +578,7 @@
         </div>
     </section>
     
+    <!-- SEÇÃO DE ÍCONES / BENEFÍCIOS RÁPIDOS -->
     <section class="bg-italy-gradient py-20"> 
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
@@ -581,7 +608,76 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO: FAQ (ACORDEÃO) -->
+    <!-- NOVA SEÇÃO DEPOIMENTOS -->
+    <section id="depoimentos" class="bg-dark-italy-gradient py-20 md:py-28">
+        <div class="container mx-auto px-6 max-w-5xl">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">O que dizem os brasileiros na Itália?</h2>
+                <p class="mt-4 text-lg text-gray-200">
+                    Veja histórias reais de quem está aplicando o método para fazer uma renda extra em Euros.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+
+                <!-- Depoimento 1: Maria Eduarda -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg flex flex-col items-center text-center fade-in-element" style="transition-delay: 100ms;">
+                    <!-- Ícone de Citação -->
+                    <svg class="w-12 h-12 text-green-500 mb-4 opacity-75" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                        <path d="M6 0C2.686 0 0 2.686 0 6v4c0 1.105.895 2 2 2h2V9a1 1 0 1 0-2 0v2H2a1.99 1.99 0 0 1-2-2V6c0-2.206 1.794-4 4-4h2a1 1 0 1 0 0-2H6Z"/>
+                        <path d="M12 0C8.686 0 6 2.686 6 6v4c0 1.105.895 2 2 2h2V9a1 1 0 1 0-2 0v2H8a1.99 1.99 0 0 1-2-2V6c0-2.206 1.794-4 4-4h2a1 1 0 1 0 0-2h-2Z"/>
+                    </svg>
+                    
+                    <!-- Estrelas RE-ADICIONADAS -->
+                    <div class="flex text-yellow-400 mb-4">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                    </div>
+
+                    <p class="text-lg italic text-gray-300">
+                        “Tem muito brasileiro aqui na minha cidade, to fazendo um grana”
+                    </p>
+                    <p class="mt-6 text-xl font-bold text-white">
+                        - Maria Eduarda
+                    </p>
+                </div>
+
+                <!-- Depoimento 2: Higor -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg flex flex-col items-center text-center fade-in-element" style="transition-delay: 250ms;">
+                    <!-- Ícone de Citação -->
+                    <svg class="w-12 h-12 text-green-500 mb-4 opacity-75" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                        <path d="M6 0C2.686 0 0 2.686 0 6v4c0 1.105.895 2 2 2h2V9a1 1 0 1 0-2 0v2H2a1.99 1.99 0 0 1-2-2V6c0-2.206 1.794-4 4-4h2a1 1 0 1 0 0-2H6Z"/>
+                        <path d="M12 0C8.686 0 6 2.686 6 6v4c0 1.105.895 2 2 2h2V9a1 1 0 1 0-2 0v2H8a1.99 1.99 0 0 1-2-2V6c0-2.206 1.794-4 4-4h2a1 1 0 1 0 0-2h-2Z"/>
+                    </svg>
+                    
+                    <!-- Estrelas RE-ADICIONADAS -->
+                    <div class="flex text-yellow-400 mb-4">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.885 5.817a1 1 0 00.95.69h6.105c.969 0 1.371 1.24.588 1.81l-4.938 3.593a1 1 0 00-.364 1.118l1.885 5.817c.3.921-.755 1.688-1.54 1.118l-4.938-3.593a1 1 0 00-1.175 0l-4.938 3.593c-.784.57-1.838-.197-1.54-1.118l1.885-5.817a1 1 0 00-.364-1.118L2.41 11.245c-.783-.57-.38-1.81.588-1.81h6.105a1 1 0 00.95-.69l1.885-5.817z"></path></svg>
+                    </div>
+
+                    <p class="text-lg italic text-gray-300">
+                        “Postei no grupo de brasileiros e tem muita gente interessada”
+                    </p>
+                    <p class="mt-6 text-xl font-bold text-white">
+                        - Higor
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- FIM DA SEÇÃO DEPOIMENTOS -->
+
+
+    <!-- SEÇÃO: FAQ (ACORDEÃO) -->
     <section id="faq" class="bg-brazil-gradient py-20 md:py-28">
         <div class="container mx-auto px-6 max-w-3xl">
             <div class="text-center max-w-3xl mx-auto mb-16 fade-in-element">
@@ -640,9 +736,10 @@
             </div>
         </div>
     </section>
-    <!-- FIM DA NOVA SEÇÃO -->
+    <!-- FIM DA SEÇÃO FAQ -->
 
     
+    <!-- SEÇÃO DE PREÇO / CTA FINAL -->
     <section id="preco" class="bg-dark-brazil-gradient text-white py-20 md:py-28">
         <div class="container mx-auto px-6 max-w-3xl text-center fade-in-element">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
@@ -659,6 +756,7 @@
             </div>
 
             
+            <!-- Botão CTA Final -->
             <a href="#" 
                target="_blank" 
                class="inline-block bg-white text-gray-900 font-extrabold text-xl md:text-2xl px-10 py-5 rounded-lg shadow-lg uppercase
@@ -670,6 +768,7 @@
     </section>
 
     
+    <!-- RODAPÉ -->
     <footer class="bg-gray-900 text-gray-500 py-10">
         <div class="container mx-auto px-6 text-center text-sm">
             
@@ -679,10 +778,11 @@
     </footer>
 
     
+    <!-- SCRIPTS JAVASCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // --- LÓGICA DO EFEITO RIPPLE ---
+            // --- LÓGICA DO EFEITO RIPPLE (ONDA NO CLIQUE) ---
             function createRipple(event) {
                 const button = event.currentTarget;
 
@@ -697,6 +797,7 @@
                 ripple.style.top = `${y}px`;
                 ripple.classList.add("ripple");
 
+                // Remove ripple anterior se existir
                 const existingRipple = button.querySelector(".ripple");
                 if (existingRipple) {
                     existingRipple.remove();
@@ -704,6 +805,7 @@
 
                 button.appendChild(ripple);
 
+                // Limpa o span da onda após a animação
                 ripple.addEventListener('animationend', () => {
                     if (ripple.parentElement) {
                         ripple.remove();
@@ -716,7 +818,7 @@
                 button.addEventListener('click', createRipple);
             });
 
-            // --- LÓGICA DO FADE-IN ON SCROLL ---
+            // --- LÓGICA DO FADE-IN ON SCROLL (APARECER AO ROLAR) ---
             const fadeInElements = document.querySelectorAll('.fade-in-element');
 
             if ("IntersectionObserver" in window) {
@@ -724,7 +826,7 @@
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('is-visible');
-                            observer.unobserve(entry.target); 
+                            observer.unobserve(entry.target); // Para de observar após animar
                         }
                     });
                 }, {
@@ -735,13 +837,13 @@
                     observer.observe(el);
                 });
             } else {
-                // Fallback para browsers antigos
+                // Fallback para browsers antigos (mostra tudo de uma vez)
                 fadeInElements.forEach(el => {
                     el.classList.add('is-visible');
                 });
             }
 
-            // --- LÓGICA DO MENU HAMBURGER ---
+            // --- LÓGICA DO MENU HAMBURGER (MOBILE) ---
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileLinks = document.querySelectorAll('.nav-link-mobile');
@@ -750,13 +852,14 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
+            // Fecha o menu ao clicar em um link
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
                 });
             });
 
-            // --- NOVA LÓGICA: FLIP CARD (PARA MOBILE/TOQUE) ---
+            // --- LÓGICA: FLIP CARD (PARA MOBILE/TOQUE) ---
             const flipToggles = document.querySelectorAll('.flip-toggle');
             flipToggles.forEach(toggle => {
                 toggle.addEventListener('click', () => {
@@ -765,7 +868,7 @@
                 });
             });
 
-            // --- NOVA LÓGICA: CURSOR CUSTOMIZADO ---
+            // --- LÓGICA: CURSOR CUSTOMIZADO ---
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorOutline = document.querySelector('.cursor-outline');
             
@@ -780,14 +883,14 @@
                 cursorOutline.style.left = `${posX}px`;
                 cursorOutline.style.top = `${posY}px`;
 
-                // Anima o outline
+                // Anima o outline para seguir suavemente
                 cursorOutline.animate({
                     left: `${posX}px`,
                     top: `${posY}px`
                 }, { duration: 300, fill: 'forwards' });
             });
 
-            // Adiciona efeito de hover
+            // Adiciona efeito de hover nos elementos interativos
             const interactiveElements = document.querySelectorAll('a, button, .flip-card, .faq-trigger');
             
             interactiveElements.forEach(el => {
@@ -802,7 +905,7 @@
             });
 
 
-            // --- NOVA LÓGICA: FAQ (ACORDEÃO) ---
+            // --- LÓGICA: FAQ (ACORDEÃO) ---
             const faqTriggers = document.querySelectorAll('.faq-trigger');
 
             faqTriggers.forEach(trigger => {
@@ -828,10 +931,9 @@
                     }
                 });
             });
-            // --- FIM DA NOVA LÓGICA ---
+            // --- FIM DAS LÓGICAS ---
         });
     </script>
     
 </body>
 </html>
-
