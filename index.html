@@ -142,7 +142,26 @@
             transform-origin: center;
             z-index: 10;
         }
+
+        /* --- NOVO: EFEITO BRILHANTE (TEXTO HERO) --- */
+        @keyframes shine-animation {
+            0%, 100% {
+                text-shadow: 0 0 8px #facc15, 0 0 12px #facc15; /* Sombra amarela (yellow-500) */
+                opacity: 1;
+            }
+            50% {
+                text-shadow: 0 0 16px #fde047, 0 0 24px #fde047; /* Sombra mais forte (yellow-300) */
+                opacity: 0.9;
+            }
+        }
+
+        .text-shine {
+            animation: shine-animation 2.5s infinite linear;
+        }
+        /* --- FIM DO EFEITO BRILHANTE --- */
+
         /* --- FIM DOS ESTILOS DE ANIMAÇÕES --- */
+
 
         /* --- ESTILOS DE BACKGROUNDS DEGRADÊ BRASIL/ITÁLIA --- */
         
@@ -387,7 +406,8 @@
                 <div class="lg:w-full fade-in-element">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
                         Descubra como Gerar
-                        <span class="text-yellow-300">Renda Extra em Euros</span>
+                        <!-- Texto com brilho aplicado -->
+                        <span class="text-yellow-300 text-shine">Renda Extra em Euros</span>
                         Morando na Itália
                     </h1>
                     <p class="mt-6 text-lg md:text-xl text-gray-200">
