@@ -142,7 +142,22 @@
             transform-origin: center;
             z-index: 10;
         }
+
+        /* --- ANIMAÇÃO: BRILHO DE TEXTO (para o H1) --- */
+        @keyframes text-glow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(253, 224, 71, 0.7), 0 0 20px rgba(253, 224, 71, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(253, 224, 71, 1), 0 0 30px rgba(253, 224, 71, 0.7);
+            }
+        }
+
+        .text-glow-animation {
+            animation: text-glow 2s ease-in-out infinite;
+        }
         /* --- FIM DOS ESTILOS DE ANIMAÇÕES --- */
+
 
         /* --- ESTILOS DE BACKGROUNDS DEGRADÊ BRASIL/ITÁLIA --- */
         
@@ -231,7 +246,7 @@
         }
         /* --- FIM DOS ESTILOS DO FLIP CARD --- */
 
-        /* --- ESTILO: IMAGEM DE FUNDO DA MAIN (Substituída) --- */
+        /* --- ESTILO: IMAGEM DE FUNDO DA MAIN (Original) --- */
         .main-bg-image {
             background-image: url('https://i.imgur.com/18Wga9B.png');
             background-size: cover;
@@ -250,7 +265,7 @@
             z-index: 0; /* Fica abaixo do conteúdo */
         }
 
-        /* --- ESTILO: IMAGEM DE FUNDO DA CTA (AULA) (Substituída) --- */
+        /* --- ESTILO: IMAGEM DE FUNDO DA CTA (AULA) (Original) --- */
         .cta-bg-image {
             background-image: url('https://i.imgur.com/mdQEnrg.png');
             background-size: cover;
@@ -320,6 +335,62 @@
         }
         /* --- FIM DOS ESTILOS DO FAQ --- */
 
+        /* --- ÍCONE MOUSE FLUTUANTE --- */
+        .mouse-scroll-icon-wrapper {
+            position: relative;
+            margin-top: 2.5rem; /* mt-10 */
+            display: flex;
+            justify-content: center;
+        }
+        
+        .mouse-scroll-icon {
+            width: 30px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.7);
+            border-radius: 60px;
+            position: relative;
+            animation: float-mouse 2s ease-in-out infinite;
+        }
+
+        .mouse-scroll-wheel {
+            width: 4px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 2px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: mouse-wheel-scroll 2s ease-in-out infinite;
+        }
+        
+        @keyframes float-mouse {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(10px);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes mouse-wheel-scroll {
+            0% {
+                top: 10px;
+                opacity: 1;
+            }
+            50% {
+                top: 20px;
+                opacity: 0;
+            }
+            100% {
+                top: 10px;
+                opacity: 1;
+            }
+        }
+        /* --- FIM DO ÍCONE MOUSE FLUTUANTE --- */
+
     </style>
 </head>
 <body class="text-gray-800">
@@ -387,7 +458,8 @@
                 <div class="lg:w-full fade-in-element">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
                         Descubra como Gerar
-                        <span class="text-yellow-300">Renda Extra em Euros</span>
+                        <!-- Texto com animação de brilho -->
+                        <span class="text-yellow-300 text-glow-animation">Renda Extra em Euros</span>
                         Morando na Itália
                     </h1>
                     <p class="mt-6 text-lg md:text-xl text-gray-200">
@@ -430,6 +502,14 @@
                 QUERO ACESSAR O MÉTODO COMPLETO
             </a>
             <p class="text-gray-300 mt-4 text-sm">Vagas limitadas. Clique no botão acima.</p>
+            
+            <!-- Ícone de Mouse Flutuante -->
+            <div class="mouse-scroll-icon-wrapper fade-in-element" style="transition-delay: 500ms;">
+                <div class="mouse-scroll-icon">
+                    <div class="mouse-scroll-wheel"></div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -478,7 +558,7 @@
 
                 
                 
-                <!-- Imagem Principal (Substituída) -->
+                <!-- Imagem Principal (Original) -->
                 <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden fade-in-element" style="transition-delay: 150ms;">
                     <img src="https://i.imgur.com/acrJGtw.png" 
                          alt="Foto de Gabriel Domingues na Itália" 
@@ -586,8 +666,7 @@
                 
                 <div class="flex flex-col items-center fade-in-element">
                     <svg class="w-12 h-12 text-blue-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 14v.01M12 14v.01M12 6v.01M12 6v.01M12 16v.01M12 16v.01M12 4v.01M12 4v.01M12 18v.01M12 18v.01M5 12h.01M5 12h.01M19 12h.01M19 12h.01M5 12h.01M5 12h.01"></path></svg>
-    
-<h3 class="text-xl font-bold mb-2">Para Brasileiros</h3>
+                    <h3 class="text-xl font-bold mb-2">Para Brasileiros</h3>
                     <p class="text-gray-700">Linguagem direta e sem enrolação, de brasileiro para brasileiro.</p>
                 </div>
                 
@@ -869,7 +948,7 @@
                 });
             });
 
-            // --- LÓGICA: CURSOR CUSTOMIZADO ---
+            // --- LÓGICA: CURSOR CUSTOMIZADO (Corrigido) ---
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorOutline = document.querySelector('.cursor-outline');
             
@@ -881,7 +960,8 @@
                 cursorDot.style.left = `${posX}px`;
                 cursorDot.style.top = `${posY}px`;
 
-                cursorOutline.style.left = `${posX}Pinhalão}px`;
+                // ERRO CORRIGIDO AQUI:
+                cursorOutline.style.left = `${posX}px`; 
                 cursorOutline.style.top = `${posY}px`;
 
                 // Anima o outline para seguir suavemente
