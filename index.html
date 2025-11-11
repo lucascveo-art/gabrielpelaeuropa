@@ -142,26 +142,7 @@
             transform-origin: center;
             z-index: 10;
         }
-
-        /* --- NOVO: EFEITO BRILHANTE (TEXTO HERO) --- */
-        @keyframes shine-animation {
-            0%, 100% {
-                text-shadow: 0 0 8px #facc15, 0 0 12px #facc15; /* Sombra amarela (yellow-500) */
-                opacity: 1;
-            }
-            50% {
-                text-shadow: 0 0 16px #fde047, 0 0 24px #fde047; /* Sombra mais forte (yellow-300) */
-                opacity: 0.9;
-            }
-        }
-
-        .text-shine {
-            animation: shine-animation 2.5s infinite linear;
-        }
-        /* --- FIM DO EFEITO BRILHANTE --- */
-
         /* --- FIM DOS ESTILOS DE ANIMAÇÕES --- */
-
 
         /* --- ESTILOS DE BACKGROUNDS DEGRADÊ BRASIL/ITÁLIA --- */
         
@@ -250,9 +231,9 @@
         }
         /* --- FIM DOS ESTILOS DO FLIP CARD --- */
 
-        /* --- ESTILO: IMAGEM DE FUNDO DA MAIN --- */
+        /* --- ESTILO: IMAGEM DE FUNDO DA MAIN (Substituída) --- */
         .main-bg-image {
-            background-image: url('https://i.imgur.com/jmdqBsV.png');
+            background-image: url('https://i.imgur.com/18Wga9B.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -269,9 +250,9 @@
             z-index: 0; /* Fica abaixo do conteúdo */
         }
 
-        /* --- ESTILO: IMAGEM DE FUNDO DA CTA (AULA) --- */
+        /* --- ESTILO: IMAGEM DE FUNDO DA CTA (AULA) (Substituída) --- */
         .cta-bg-image {
-            background-image: url('https://i.imgur.com/2upUBW0.png');
+            background-image: url('https://i.imgur.com/mdQEnrg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -338,56 +319,6 @@
             transform: rotate(45deg);
         }
         /* --- FIM DOS ESTILOS DO FAQ --- */
-
-        /* --- NOVO: ÍCONE DE MOUSE FLUTUANTE --- */
-        .mouse-icon {
-            width: 30px;
-            height: 50px;
-            border: 2px solid #f1f5f9; /* slate-100 (cor do cursor) */
-            border-radius: 15px;
-            position: relative;
-            animation: bobbing 2s infinite ease-in-out;
-            opacity: 0.7;
-        }
-
-        .mouse-wheel {
-            width: 4px;
-            height: 8px;
-            background-color: #f1f5f9; /* slate-100 */
-            border-radius: 2px;
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: mouse-scroll 2s infinite ease-in-out;
-        }
-
-        /* Animação flutuante (para cima e para baixo) */
-        @keyframes bobbing {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(10px);
-            }
-        }
-
-        /* Animação da rodinha do mouse */
-        @keyframes mouse-scroll {
-            0% {
-                opacity: 0;
-                top: 10px;
-            }
-            50% {
-                opacity: 1;
-                top: 15px;
-            }
-            100% {
-                opacity: 0;
-                top: 20px;
-            }
-        }
-        /* --- FIM DO ÍCONE DE MOUSE --- */
 
     </style>
 </head>
@@ -456,8 +387,7 @@
                 <div class="lg:w-full fade-in-element">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
                         Descubra como Gerar
-                        <!-- Texto com brilho aplicado -->
-                        <span class="text-yellow-300 text-shine">Renda Extra em Euros</span>
+                        <span class="text-yellow-300">Renda Extra em Euros</span>
                         Morando na Itália
                     </h1>
                     <p class="mt-6 text-lg md:text-xl text-gray-200">
@@ -500,13 +430,6 @@
                 QUERO ACESSAR O MÉTODO COMPLETO
             </a>
             <p class="text-gray-300 mt-4 text-sm">Vagas limitadas. Clique no botão acima.</p>
-
-            <!-- Ícone de Mouse Flutuante (Corrigido) -->
-            <!-- Movido para o fluxo normal do documento, centralizado com mx-auto e com margem superior mt-12 -->
-            <div class="mouse-icon mx-auto mt-12">
-                <div class="mouse-wheel"></div>
-            </div>
-
         </div>
     </section>
 
@@ -555,9 +478,9 @@
 
                 
                 
-                <!-- Imagem Principal (Corrigida) -->
+                <!-- Imagem Principal (Substituída) -->
                 <div class="bg-gray-200 rounded-xl shadow-lg overflow-hidden fade-in-element" style="transition-delay: 150ms;">
-                    <img src="https://i.imgur.com/0YYxffp.png" 
+                    <img src="https://i.imgur.com/acrJGtw.png" 
                          alt="Foto de Gabriel Domingues na Itália" 
                          class="w-full h-full object-cover aspect-square"
                          onerror="this.src='https://placehold.co/600x600/e0e0e0/333?text=Imagem+Indisponível'; this.onerror=null;">
@@ -958,7 +881,7 @@
                 cursorDot.style.left = `${posX}px`;
                 cursorDot.style.top = `${posY}px`;
 
-                cursorOutline.style.left = `${posX}px`;
+                cursorOutline.style.left = `${posX}Pinhalão}px`;
                 cursorOutline.style.top = `${posY}px`;
 
                 // Anima o outline para seguir suavemente
